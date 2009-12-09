@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Robert Hall"]
   s.date = %q{2009-12-09}
-  s.description = %q{Create rails based schema level fake data.}
+  s.description = %q{TODO: longer description of your gem}
   s.email = %q{robert.hall@itatc.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -42,11 +42,11 @@ Gem::Specification.new do |s|
      "test/helper.rb",
      "test/test_imposter.rb"
   ]
-  s.homepage = %q{http://imposter.itatc.com}
+  s.homepage = %q{http://github.com/golsombe/imposter}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
-  s.summary = %q{Real fake data}
+  s.summary = %q{TODO: one-line summary of your gem}
   s.test_files = [
     "test/test_imposter.rb",
      "test/helper.rb"
@@ -61,17 +61,20 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<sqlite3-ruby>, [">= 1.2.5"])
       s.add_runtime_dependency(%q<faker>, [">= 0"])
       s.add_runtime_dependency(%q<fastercsv>, [">= 0"])
+      s.add_development_dependency(%q<thoughtbot-shoulda>, [">= 0"])
     else
       s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
       s.add_dependency(%q<sqlite3-ruby>, [">= 1.2.5"])
       s.add_dependency(%q<faker>, [">= 0"])
       s.add_dependency(%q<fastercsv>, [">= 0"])
+      s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
     end
   else
     s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
     s.add_dependency(%q<sqlite3-ruby>, [">= 1.2.5"])
     s.add_dependency(%q<faker>, [">= 0"])
     s.add_dependency(%q<fastercsv>, [">= 0"])
+    s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
   end
 end
 
