@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{imposter}
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Robert Hall"]
   s.date = %q{2009-12-09}
-  s.description = %q{TODO: longer description of your gem}
+  s.description = %q{Add generator and rake tasks via YAML based imposters for schema level data faking}
   s.email = %q{robert.hall@itatc.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -46,7 +46,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
-  s.summary = %q{TODO: one-line summary of your gem}
+  s.summary = %q{Real fake data}
   s.test_files = [
     "test/test_imposter.rb",
      "test/helper.rb"

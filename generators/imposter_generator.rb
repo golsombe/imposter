@@ -2,7 +2,7 @@ require 'rubygems'
 require 'activerecord'
 require 'pathname'
 require 'activesupport'
-
+require 'ftools'
 
 class ImposterGenerator < Rails::Generator::Base
 	dbc = YAML.load(File.read('config/database.yml'))
@@ -75,12 +75,16 @@ class ImposterGenerator < Rails::Generator::Base
 	end
 
 	def genmodels
-	
+		create_rake_file
 		models_dir = Dir.glob("app/models/*.rb")
 		models_dir.each do |model_dir|
 			genmodel(model_dir)
 		end	
 	end
 
+	def create_rake_file
+		puts "Creating lib/tasks/databases.rake"
+		File.copy( Pathname.new(__FILE__).dirname + "../lib/tasks/databases.rake", "lib/tasks/")
+	end
 
 end
