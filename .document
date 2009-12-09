@@ -1,5 +1,7 @@
 README.rdoc
 lib/**/*.rb
+lib/imposter/*.rb
+lib/imposter/*.db
 bin/*
 features/**/*.feature
 LICENSE

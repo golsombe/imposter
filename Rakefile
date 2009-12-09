@@ -5,12 +5,17 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "imposter"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = "Real fake data"
+    gem.description = "Create rails based schema level fake data."
     gem.email = "robert.hall@itatc.com"
     gem.homepage = "http://github.com/golsombe/imposter"
     gem.authors = ["Robert Hall"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    gem.add_dependency "sqlite3-ruby", ">= 1.2.5"
+    gem.add_dependency "faker", ">= 0"
+    gem.add_dependency "fastercsv", ">= 0"
+    gem.files.include %w(lib/imposter/*.rb lib/imposter/*.db generators/**/*.rb)
+
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
