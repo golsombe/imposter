@@ -24,19 +24,25 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "generators/imposter_generator.rb",
+     "id_rsa.pub",
+     "imposter.gemspec",
      "lib/imposter.rb",
      "lib/imposter/animal.rb",
      "lib/imposter/csz.db",
      "lib/imposter/csz.rb",
      "lib/imposter/mineral.rb",
+     "lib/imposter/minerals_short.lst",
      "lib/imposter/noun.rb",
+     "lib/imposter/noun.xx",
      "lib/imposter/vegtable.rb",
      "lib/imposter/verb.rb",
+     "lib/imposter/verb.xx",
      "lib/imposter/version.rb",
+     "lib/tasks/databases.rake",
      "test/helper.rb",
      "test/test_imposter.rb"
   ]
-  s.homepage = %q{http://github.com/golsombe/imposter}
+  s.homepage = %q{http://imposter.itatc.com}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
