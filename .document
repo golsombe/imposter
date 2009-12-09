@@ -1,7 +1,10 @@
 README.rdoc
 lib/**/*.rb
+<<<<<<< HEAD:.document
 lib/imposter/*.rb
 lib/imposter/*.db
+=======
+>>>>>>> b1541b59303844fd485497f5bc41b507a2df846d:.document
 bin/*
 features/**/*.feature
 LICENSE
