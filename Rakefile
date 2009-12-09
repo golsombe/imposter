@@ -8,7 +8,7 @@ begin
     gem.summary = "Real fake data"
     gem.description = "Create rails based schema level fake data."
     gem.email = "robert.hall@itatc.com"
-    gem.homepage = "http://github.com/golsombe/imposter"
+    gem.homepage = "http://imposter.itatc.com"
     gem.authors = ["Robert Hall"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     gem.add_dependency "sqlite3-ruby", ">= 1.2.5"
