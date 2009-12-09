@@ -1,0 +1,14 @@
+module Imposter
+  # Based on Faker::Lorem
+  class Verb
+    Verbs = %w(add address administer admire admit adopt advise afford agree alert alight allow altered amuse analyze announce annoy answer anticipate apologize appear applaud applied appoint appraise appreciate approve arbitrate argue arise arrange arrest arrive ascertain ask assemble assess assist assure attach attack attain attempt attend attract audited avoid awake  back bake balance ban bang bare bat bathe battle be beam bear beat become beg begin behave behold belong bend beset bet bid bind bite bleach bleed bless blind blink blot blow blush boast boil bolt bomb book bore borrow bounce bow box brake branch break breathe breed brief bring broadcast bruise brush bubble budget build bump burn burst bury bust buy buzz  calculate call camp care carry carve cast catalog catch cause challenge change charge chart chase cheat check cheer chew choke choose chop claim clap clarify classify clean clear cling clip close clothe coach coil collect color comb come command communicate compare compete compile complain complete compose compute conceive concentrate conceptualize concern conclude conduct confess confront confuse connect conserve consider consist consolidate construct consult contain continue contract control convert coordinate copy correct correlate cost cough counsel count cover crack crash crawl create creep critique cross crush cry cure curl curve cut cycle dam damage dance dare deal decay deceive decide decorate define delay delegate delight deliver demonstrate depend describe desert deserve design destroy detail detect determine develop devise diagnose dig direct disagree disappear disapprove disarm discover dislike dispense display disprove dissect distribute dive divert divide do double doubt draft drag drain dramatize draw dream dress drink drip drive drop drown drum dry dust dwell earn eat edited educate eliminate embarrass employ empty enacted encourage end endure enforce engineer enhance enjoy enlist ensure enter entertain escape establish estimate evaluate examine exceed excite excuse execute exercise exhibit exist expand expect expedite experiment explain explode express extend extract  face facilitate fade fail fancy fasten fax fear feed feel fence fetch fight file fill film finalize finance find fire fit fix flap flash flee fling float flood flow flower fly fold follow fool forbid force forecast forego foresee foretell forget forgive form formulate forsake frame freeze frighten fry gather gaze generate get give glow glue go govern grab graduate grate grease greet grin grind grip groan grow guarantee guard guess guide hammer hand handle handwrite hang happen harass harm hate haunt head heal heap hear heat help hide hit hold hook hop hope hover hug hum hunt hurry hurt hypothesize)
+
+    def self.one(num = 1)
+      Verbs.shuffle[0, num]
+    end
+
+    def self.multiple(word_count = 2)
+      one(word_count).join(' ').capitalize
+    end
+  end
+end
