@@ -1,17 +1,22 @@
-= imposter
+= Imposter
 
-Description goes here.
+Real fake data. Allows creation of an entire schema of fake data that honors associations. 
 
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+== Usage
+* script/generate imposter => /test/imposter/[timestamp]_[model].yaml #YAML DSLs for the fake data generation
+# YAMLs are executed in series order much like migrations
+* rake::imposter IMPOSTER="products" #generate only the /test/fixtures/products.csv
+* rake::imposter #generate all /test/imposter/[##############_]*.yaml to /test/fixtures
+* rake::imposter --force #generate all /test/imposter/[###]-*.yaml to /test/fixtures to
+* overwrite any existing .csv
 
-== Copyright
+* Imposter::Noun.noun => "apple" #random noun
+* Imposter::Verb.verbs(3) => "run tag jump" #random verbs string space delimited
 
-Copyright (c) 2009 Robert Hall. See LICENSE for details.
+#---For unit/integration/etl testing that require real but random addresses
+* Imposter::CSZ.zip => "90210" #random real postal code
+* Imposter::CSZ.city(:zip=>"90210") => "Beverly Hills" #real city name from zip
+* Imposter::CSZ.state_abbr(:zip=>"90210") => "CA" #real 2 letter state abbreviation upper case
+* Imposter::CSZ.state_name(:zip=>"90210") => "California" #Real State name Camelized
+
+* Imposter::CSZ.zip(:state_abbr=>"CA") => "90115" #Random but real postal code from real state.

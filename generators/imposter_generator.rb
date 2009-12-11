@@ -26,51 +26,56 @@ class ImposterGenerator < Rails::Generator::Base
 
 	def genmodel(model_name)
 		mn = Pathname.new(model_name).basename.to_s.chomp(File.extname(model_name))
-		require model_name
-		puts "                 " + mn	
-		mh = Hash.new
-		ma = Hash.new
-		mf = Hash.new
-		eval(mn.camelcase).columns.each do |mod|
-			if mod.name.include? "_id" then
-				vl = "@" + mod.name.sub("_id","").pluralize + "[rand(@" + mod.name.sub('_id','').pluralize + ".length)][1]"
-				mh = {mod.name => vl}
-				ma.merge!(mh)
-			else
-				case mod.type.to_s.downcase
-					when 'string'
-						case (1 + rand(3))
-							when 1					
-								vl = 'Imposter::Noun.multiple'
-							when 2
-								vl = 'Imposter::Animal.one'
-							when 3 
-								vl = 'Imposter::Vegtable.multiple'
-							when 4 
-								vl = 'Imposter::Mineral.one'
-						end
-					when 'text' then 
-						vl = 'Faker::Lorem.sentence(3)'
-					when 'integer' then
-						vl = 'i.to_s'
-					when 'datetime' || 'date'
-						vl = 'Date.today.to_s'
-					when 'decimal' then
-						vl = 'rand(50).to_s + "." + (1000+rand(2000)).to_s'
-					else
-						puts "=-------=============> " + mod.type.to_s.downcase
-				end
-				if not mod.name.include? "_at" and :include_special	
+		if not File.exists? yaml_file || option['--force'] then
+			require model_name
+			puts "                 " + mn	
+			mh = Hash.new
+			ma = Hash.new
+			mf = Hash.new
+			eval(mn.camelcase).columns.each do |mod|
+				if mod.name.include? "_id" then
+					vl = "@" + mod.name.sub("_id","").pluralize + "[rand(@" + mod.name.sub('_id','').pluralize + ".length)][1]"
 					mh = {mod.name => vl}
 					ma.merge!(mh)
+				else
+					case mod.type.to_s.downcase
+						when 'string'
+							case (1 + rand(3))
+								when 1					
+									vl = 'Imposter::Noun.multiple'
+								when 2
+									vl = 'Imposter::Animal.one'
+								when 3 
+									vl = 'Imposter::Vegtable.multiple'
+								when 4 
+									vl = 'Imposter::Mineral.one'
+							end
+						when 'text' then 
+							vl = 'Faker::Lorem.sentence(3)'
+						when 'integer' then
+							vl = 'i.to_s'
+						when 'datetime' || 'date'
+							vl = 'Date.today.to_s'
+						when 'decimal' then
+							vl = 'rand(50).to_s + "." + (1000+rand(2000)).to_s'
+						else
+							puts "=-------=============> " + mod.type.to_s.downcase
+					end
+					if not mod.name.include? "_at" and :include_special	
+						mh = {mod.name => vl}
+						ma.merge!(mh)
+					end
 				end
 			end
-		end
-		mf.merge!(mn => {"fields" => ma})
-		mf[mn].merge!({"quantity" => 10})
-		File.open("test/imposter/" + "%03d" % eval(mn.camelcase).reflections.count + "-" + mn  + ".yml","w") do |out|
-		#+ Time.now.strftime("%Y%m%d%H%m%s") + "_" + mn + ".yaml","w") do |out|
-			YAML.dump(mf,out)  
+			mf.merge!(mn => {"fields" => ma})
+			mf[mn].merge!({"quantity" => 10})
+			yaml_file = "test/imposter/" + "%03d" % eval(mn.camelcase).reflections.count + "-" + mn  + ".yml"
+			File.open("test/imposter/" + "%03d" % eval(mn.camelcase).reflections.count + "-" + mn  + ".yml","w") do |out|
+			#+ Time.now.strftime("%Y%m%d%H%m%s") + "_" + mn + ".yaml","w") do |out|
+				YAML.dump(mf,out)  
+		else
+			puts "                 " + mn + " --skipped"	
+
 		end
 	end
 
