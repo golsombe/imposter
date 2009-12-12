@@ -9,25 +9,22 @@ class ImposterGenerator < Rails::Generator::Base
 	conn = ActiveRecord::Base.establish_connection(dbc["development"])
 
 	def manifest
-	   record do |m|	
+	   record do |m|
+		m.directory("test/imposter")
+		m.file("databases.rake", "lib/tasks/database.rake")
+		puts "Collision Forced " + (options[:collision] == :force).to_s
 		puts "Generating"
-		if not File.directory? "test/imposter"
-			Dir.mkdir("test/imposter")
-		end
-		case ARGV.length
-			when 1
-				genmodel(ARGV[0])	
-			else	
-				genmodels
-		end
+		genmodels
            end
 	end
 
 
 	def genmodel(model_name)
 		mn = Pathname.new(model_name).basename.to_s.chomp(File.extname(model_name))
-		if not File.exists? yaml_file || option['--force'] then
-			require model_name
+		require model_name
+
+		yaml_file = "test/imposter/" + "%03d" % eval(mn.camelcase).reflections.count + "-" + mn  + ".yml"
+		if (not File.exists? yaml_file) || options[:collision] == :force then
 			puts "                 " + mn	
 			mh = Hash.new
 			ma = Hash.new
@@ -69,23 +66,29 @@ class ImposterGenerator < Rails::Generator::Base
 			end
 			mf.merge!(mn => {"fields" => ma})
 			mf[mn].merge!({"quantity" => 10})
-			yaml_file = "test/imposter/" + "%03d" % eval(mn.camelcase).reflections.count + "-" + mn  + ".yml"
 			File.open("test/imposter/" + "%03d" % eval(mn.camelcase).reflections.count + "-" + mn  + ".yml","w") do |out|
-			#+ Time.now.strftime("%Y%m%d%H%m%s") + "_" + mn + ".yaml","w") do |out|
 				YAML.dump(mf,out)  
+			end
 		else
 			puts "                 " + mn + " --skipped"	
-
 		end
 	end
 
 	def genmodels
-		create_rake_file
+		#create_rake_file
 		models_dir = Dir.glob("app/models/*.rb")
 		models_dir.each do |model_dir|
 			genmodel(model_dir)
 		end	
 	end
+
+	def banner
+		"Usage: #{$0} #{spec.name} [options]"
+	end
+
+        def add_options!(opt)
+             opt.on('-f', '--force') { |value| options[:force] = value }
+        end
 
 	def create_rake_file
 		puts "Creating lib/tasks/databases.rake"

@@ -14,7 +14,7 @@ begin
     gem.add_dependency "sqlite3-ruby", ">= 1.2.5"
     gem.add_dependency "faker", ">= 0"
     gem.add_dependency "fastercsv", ">= 0"
-    gem.files.include %w(lib/imposter/*.rb lib/imposter/*.db generators/**/*.rb lib/tasks/**/*.rake)
+    gem.files.include %w(lib/imposter/*.rb lib/imposter/*.db generators/**/*.rb generators/templates/*.rake)
     gem.summary = %Q{Real fake data}
     gem.description = %Q{Add generator and rake tasks via YAML based imposters for schema level data faking}
     gem.email = "robert.hall@itatc.com"
