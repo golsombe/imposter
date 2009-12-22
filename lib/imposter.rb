@@ -10,7 +10,7 @@ require 'imposter/verb'
 require 'imposter/animal'
 require 'imposter/vegtable'
 require 'imposter/mineral'
-#require 'imposter/csv'
+require 'imposter/csv'
 
 module Imposter
 	
@@ -86,7 +86,7 @@ module Imposter
 		letter_string.gsub(/\?/) { ('a'..'z').to_a.rand }
 	end
 
-	def self.bothify(string)
+	def self.pattern(string)
 		self.letterify(self.numerify(string))
 	end
 end
