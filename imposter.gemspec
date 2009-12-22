@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{imposter}
-  s.version = "0.1.4"
+  s.version = "0.1.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Robert Hall"]
-  s.date = %q{2009-12-11}
+  s.date = %q{2009-12-21}
   s.description = %q{Add generator and rake tasks via YAML based imposters for schema level data faking}
   s.email = %q{robert.hall@itatc.com}
   s.extra_rdoc_files = [
@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
      "lib/imposter/minerals_short.lst",
      "lib/imposter/noun.rb",
      "lib/imposter/noun.xx",
+     "lib/imposter/phone.rb",
      "lib/imposter/vegtable.rb",
      "lib/imposter/verb.rb",
      "lib/imposter/verb.xx",

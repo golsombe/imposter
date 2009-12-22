@@ -1,18 +1,29 @@
 require 'rubygems'
 require 'sqlite3'
 
-@db = SQLite3::Database.new('csz.db')
+$csz_db = SQLite3::Database.new('csz.db')
+$csz_db.results_as_hash = true
+@@total_rows = $csz_db.execute2("select count(*) from us").to_s.to_i
 
-def postal(code=nil)
-	case code
-		when nil
-			cnt = @db.get_first_value("select count(*) from us").to_i # could probably hardcode this since the data is static
-									          # but I didn't really see a speed difference without it
-			@db.execute2("select * from us")[1+rand(cnt-1)] 
-		else
-		 	@db.execute2("select * from us where postal = '" + code + "'") 
-	end		
 
+module Imposter
+class CSZ
+	class << self
+	
+		def get
+			@@csz_get = $csz_db.execute2("select city,state,zip5 from us")[1+rand(@@total_rows-1)]
+		end
+
+		def zip5
+			@@csz_get['zip5']
+		end
+		def state(zip5=nil)
+			@@csz_get['state']
+		end
+		
+		def city(zip5=nil)
+			@@csz_get['city']
+		end
+	end
+   end
 end
-
-puts postal
