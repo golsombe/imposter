@@ -32,13 +32,10 @@ Gem::Specification.new do |s|
      "lib/imposter/csz.db",
      "lib/imposter/csz.rb",
      "lib/imposter/mineral.rb",
-     "lib/imposter/minerals_short.lst",
      "lib/imposter/noun.rb",
-     "lib/imposter/noun.xx",
      "lib/imposter/phone.rb",
      "lib/imposter/vegtable.rb",
      "lib/imposter/verb.rb",
-     "lib/imposter/verb.xx",
      "lib/imposter/version.rb",
      "test/helper.rb",
      "test/test_imposter.rb"
