@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
      "lib/imposter/animal.rb",
      "lib/imposter/csz.db",
      "lib/imposter/csz.rb",
+     "lib/imposter/imposter.rb",
      "lib/imposter/mineral.rb",
      "lib/imposter/noun.rb",
      "lib/imposter/phone.rb",

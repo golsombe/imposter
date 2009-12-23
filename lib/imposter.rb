@@ -10,7 +10,7 @@ require 'imposter/verb'
 require 'imposter/animal'
 require 'imposter/vegtable'
 require 'imposter/mineral'
-require 'imposter/csv'
+require 'imposter/csz'
 
 module Imposter
 	
@@ -21,7 +21,7 @@ module Imposter
 		m = Array.new(cnt,0)
 		FasterCSV.open(filename,"w") do |csv|
 			csv << fields
-			#begin
+			begin
 			(1..cnt).each do |i|
 				vl.each do |v|
 					begin 
@@ -34,9 +34,9 @@ module Imposter
 				csv << l
 				l.clear
 			end
-			#rescue
-			#	puts "Some format/data error in  " + filename
-			#end
+			rescue
+				puts "Some format/data error in  " + filename
+			end
 		end
 		return m
 	end
@@ -44,10 +44,12 @@ module Imposter
 	def self.getfixtures
 		fixtures_dir = Dir.glob("test/fixtures/*.csv")
 		#Loading existing CSV structures
-		fixtures_dir.each do |fixture_csv|
-			fn = Pathname.new(fixture_csv).basename.to_s.chomp(File.extname(fixture_csv))
-			eval("@" + fn + "= FasterCSV.open(fixture_csv,'r').to_a") 
-		end	
+		if not fixtures_dir.empty? then
+			fixtures_dir.each do |fixture_csv|
+				fn = Pathname.new(fixture_csv).basename.to_s.chomp(File.extname(fixture_csv))
+				eval("@" + fn + "= FasterCSV.open(fixture_csv,'r').to_a  rescue nil") 
+			end	
+		end
 	end
 
 	def self.parseyaml(yamlfilename)
@@ -57,13 +59,12 @@ module Imposter
 		imp_values = imp_yaml[mn]["fields"].values
 		imp_fields = imp_yaml[mn]["fields"].keys
 		imp_qty = imp_yaml[mn]["quantity"]
-		#load existing csv as array assigned to @[csv] variable
-		#process yaml to csv
 		rl = gencsv("test/fixtures/" + mn.pluralize + ".csv",imp_qty,imp_fields, imp_values) 
 		eval("@" + mn.pluralize + "= rl")
 	end
 
 	def self.genimposters
+		puts "File: " + __FILE__
 		models_dir = Dir.glob("test/imposter/*.yml")
 		#puts models_dir
 		models_dir.each do |imposter_yaml|

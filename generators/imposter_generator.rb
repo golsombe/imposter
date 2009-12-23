@@ -51,7 +51,9 @@ class ImposterGenerator < Rails::Generator::Base
 							vl = 'Faker::Lorem.sentence(3)'
 						when 'integer' then
 							vl = 'i.to_s'
-						when 'datetime' || 'date'
+						when 'datetime' 
+							vl = 'Date.today.to_s'
+						when 'date'
 							vl = 'Date.today.to_s'
 						when 'decimal' then
 							vl = 'rand(50).to_s + "." + (1000+rand(2000)).to_s'
