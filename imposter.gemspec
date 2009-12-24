@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Robert Hall"]
-  s.date = %q{2009-12-22}
+  s.date = %q{2009-12-24}
   s.description = %q{Add generator and rake tasks via YAML based imposters for schema level data faking}
   s.email = %q{robert.hall@itatc.com}
   s.extra_rdoc_files = [

@@ -13,7 +13,6 @@ require 'imposter/mineral'
 require 'imposter/csz'
 
 module Imposter
-	
 	def self.gencsv(filename,cnt,fields,values)
 		puts "    #{filename.sub(/.csv/,'')}..."
 		vl = values	
